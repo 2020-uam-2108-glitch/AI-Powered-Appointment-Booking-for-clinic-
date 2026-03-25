@@ -18,6 +18,22 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     if (action === "book") {
+      // Validate doctor_id is a valid UUID
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (!doctor_id || !uuidRegex.test(doctor_id)) {
+        return new Response(JSON.stringify({ success: false, error: "Invalid or missing doctor. Please select a valid doctor from our available list." }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      // Verify doctor exists
+      const { data: doctor } = await supabase.from("doctors").select("id").eq("id", doctor_id).maybeSingle();
+      if (!doctor) {
+        return new Response(JSON.stringify({ success: false, error: "Doctor not found. Please choose from available doctors." }), {
+          status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
       // Check for conflicts
       const { data: conflicts } = await supabase
         .from("appointments")
