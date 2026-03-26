@@ -6,9 +6,11 @@ import {
   Stethoscope,
   Settings,
   HelpCircle,
+  LogOut,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import {
   Sidebar,
   SidebarContent,
@@ -18,6 +20,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
 
@@ -41,6 +44,7 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const { signOut, user } = useAuth();
   const isActive = (path: string) => location.pathname === path;
 
   const renderGroup = (label: string, items: typeof mainItems) => (
@@ -70,6 +74,19 @@ export function AppSidebar() {
         {renderGroup("Staff", staffItems)}
         {renderGroup("Other", settingsItems)}
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            {!collapsed && user && (
+              <p className="px-3 py-1 text-xs text-muted-foreground truncate">{user.email}</p>
+            )}
+            <SidebarMenuButton onClick={signOut} className="hover:bg-destructive/10 hover:text-destructive">
+              <LogOut className="mr-2 h-4 w-4" />
+              {!collapsed && <span>Sign Out</span>}
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
