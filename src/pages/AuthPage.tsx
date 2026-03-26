@@ -107,6 +107,13 @@ export default function AuthPage() {
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Please wait..." : isLogin ? "Sign In" : "Sign Up"}
             </Button>
+            {isLogin && (
+              <div className="text-right">
+                <Link to="/forgot-password" className="text-sm text-primary underline-offset-4 hover:underline font-medium">
+                  Forgot password?
+                </Link>
+              </div>
+            )}
           </form>
           <div className="mt-4 text-center text-sm text-muted-foreground">
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
