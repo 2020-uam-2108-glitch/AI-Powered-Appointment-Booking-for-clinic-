@@ -8,6 +8,8 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import Index from "./pages/Index";
 import DoctorsPage from "./pages/DoctorsPage";
 import AuthPage from "./pages/AuthPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminDoctors from "./pages/admin/AdminDoctors";
 import AdminAppointments from "./pages/admin/AdminAppointments";
