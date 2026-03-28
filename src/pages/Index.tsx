@@ -27,8 +27,8 @@ const Index = () => {
             <Link to="/doctors" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Our Doctors
             </Link>
-            <Link to="/admin">
-              <Button variant="outline" size="sm">Staff Portal</Button>
+            <Link to="/login">
+              <Button variant="outline" size="sm">Staff Login</Button>
             </Link>
           </nav>
         </div>
