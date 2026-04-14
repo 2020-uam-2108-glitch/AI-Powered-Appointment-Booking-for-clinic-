@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Users, MessageSquare, Clock } from "lucide-react";
+import { Calendar, Users, MessageSquare, Stethoscope } from "lucide-react";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({ appointments: 0, patients: 0, conversations: 0, doctors: 0 });
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
     { title: "Total Appointments", value: stats.appointments, icon: Calendar, color: "text-primary" },
     { title: "Patients", value: stats.patients, icon: Users, color: "text-info" },
     { title: "AI Conversations", value: stats.conversations, icon: MessageSquare, color: "text-success" },
-    { title: "Active Doctors", value: stats.doctors, icon: Clock, color: "text-warning" },
+    { title: "Active Doctors", value: stats.doctors, icon: Stethoscope, color: "text-warning" },
   ];
 
   return (

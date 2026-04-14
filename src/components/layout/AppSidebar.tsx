@@ -37,7 +37,7 @@ const staffItems = [
 
 const settingsItems = [
   { title: "Settings", url: "/admin/settings", icon: Settings },
-  { title: "Help & FAQs", url: "/doctors", icon: HelpCircle },
+  { title: "Our Doctors", url: "/doctors", icon: HelpCircle },
 ];
 
 export function AppSidebar() {

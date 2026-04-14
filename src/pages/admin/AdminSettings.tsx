@@ -22,6 +22,16 @@ export default function AdminSettings() {
     });
   }, []);
 
+  const labels: Record<string, string> = {
+    clinic_name: "Clinic Name",
+    clinic_address: "Address",
+    clinic_phone: "Phone Number",
+    clinic_hours: "Opening Hours (JSON)",
+    cancellation_cutoff_hours: "Cancellation Cutoff (hours)",
+    reminder_intervals_hours: "Reminder Intervals (JSON array)",
+    greeting_message: "AI Greeting Message",
+  };
+
   const handleSave = async (key: string) => {
     let value: any = edits[key];
     try { value = JSON.parse(value); } catch { /* keep as string */ }
@@ -34,18 +44,8 @@ export default function AdminSettings() {
     if (error) {
       toast({ variant: "destructive", title: "Error", description: error.message });
     } else {
-      toast({ title: "Saved", description: `${key} updated.` });
+      toast({ title: "Saved", description: `${labels[key] || key} updated.` });
     }
-  };
-
-  const labels: Record<string, string> = {
-    clinic_name: "Clinic Name",
-    clinic_address: "Address",
-    clinic_phone: "Phone Number",
-    clinic_hours: "Opening Hours (JSON)",
-    cancellation_cutoff_hours: "Cancellation Cutoff (hours)",
-    reminder_intervals_hours: "Reminder Intervals (JSON array)",
-    greeting_message: "AI Greeting Message",
   };
 
   return (
